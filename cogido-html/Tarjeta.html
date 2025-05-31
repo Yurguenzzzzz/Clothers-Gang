@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pago</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #283e51, #485563);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #eee;
+  }
+
+  .container {
+    background: #1c2533;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    width: 380px;
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #f0f4f8;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-align: left;
+  }
+
+  input[type="text"],
+  input[type="month"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    background-color: #2e3a52;
+    color: #eee;
+    box-shadow: inset 0 0 8px #223344;
+    transition: box-shadow 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+  }
+
+  input[type="text"]:focus,
+  input[type="month"]:focus,
+  input[type="password"]:focus {
+    box-shadow: 0 0 12px #5a9bd4;
+  }
+
+  .card-type {
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1.2px;
+    color: #a1c9f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 44px;
+  }
+
+  .card-logo {
+    width: 48px;
+    height: 30px;
+    filter: drop-shadow(0 0 3px #5a9bd4);
+  }
+
+  button {
+    width: 100%;
+    padding: 14px 0;
+    background: #5a9bd4;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(90,155,212,0.6);
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-bottom: 15px;
+  }
+
+  button:hover:enabled {
+    background: #3c74b8;
+    transform: scale(1.05);
+  }
+
+  button:disabled {
+    background: #416799aa;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Logos */
+
+  .paypal { fill: #003087; }
+  .mastercard { fill: #eb001b; }
+  .visa { fill: #1a1f71; }
+  .amex { fill: #2e77bb; }
+  .discover { fill: #f76b1c; }
+  .diners { fill: #006778; }
+  .jcb { fill: #0072ce; }
+  .unknown { fill: #777; }
+
+  .btn-secondary {
+    background: #888;
+    box-shadow: none;
+  }
+  .btn-secondary:hover {
+    background: #666;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pago Con tarjeta</h2>
+
+  <label for="cardNumber">Número de Tarjeta</label>
+  <input id="cardNumber" type="text" maxlength="19" placeholder="Ej: 1234 5678 9012 3456" autocomplete="off" />
+
+  <div class="card-type" id="cardTypeDisplay">
+    Escribe el número para ver el tipo de tarjeta
+  </div>
+
+  <label for="expDate">Fecha de Expiración</label>
+  <input id="expDate" type="month" min="2023-01" max="2035-12" />
+
+  <label for="cvv">Código de Seguridad (CVV)</label>
+  <input id="cvv" type="password" maxlength="4" placeholder="123" />
+
+  <button id="payBtn" disabled>Pagar</button>
+  <button id="cancelBtn" class="btn-secondary">Volver sin tarjeta</button>
+</div>
+
+<script>
+  const cardNumberInput = document.getElementById('cardNumber');
+  const expDateInput = document.getElementById('expDate');
+  const cvvInput = document.getElementById('cvv');
+  const cardTypeDisplay = document.getElementById('cardTypeDisplay');
+  const payBtn = document.getElementById('payBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+
+  const logos = {
+    paypal: `<svg class="card-logo paypal" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#003087"/><text x="32" y="28" fill="white" font-size="16" font-weight="700" text-anchor="middle" font-family="Roboto">PayPal</text></svg>`,
+    mastercard: `<svg class="card-logo mastercard" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="20" r="16" fill="#eb001b"/><circle cx="42" cy="20" r="16" fill="#f79e1b" fill-opacity="0.9"/><text x="32" y="28" fill="white" font-size="16" font-weight="700" text-anchor="middle" font-family="Roboto">MC</text></svg>`,
+    visa: `<svg class="card-logo visa" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#1a1f71"/><text x="32" y="28" fill="white" font-size="16" font-weight="700" text-anchor="middle" font-family="Roboto">VISA</text></svg>`,
+    amex: `<svg class="card-logo amex" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#2e77bb"/><text x="32" y="28" fill="white" font-size="14" font-weight="700" text-anchor="middle" font-family="Roboto">Amex</text></svg>`,
+    discover: `<svg class="card-logo discover" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#f76b1c"/><text x="32" y="28" fill="white" font-size="14" font-weight="700" text-anchor="middle" font-family="Roboto">Disc</text></svg>`,
+    diners: `<svg class="card-logo diners" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#006778"/><text x="32" y="28" fill="white" font-size="14" font-weight="700" text-anchor="middle" font-family="Roboto">Diners</text></svg>`,
+    jcb: `<svg class="card-logo jcb" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="40" rx="6" fill="#0072ce"/><text x="32" y="28" fill="white" font-size="14" font-weight="700" text-anchor="middle" font-family="Roboto">JCB</text></svg>`,
+    unknown: `<span style="color: #777; font-weight: 600;">❓ Tipo desconocido</span>`
+  };
+
+  function getCardType(number) {
+    if (!number) return 'unknown';
+    const first = number[0];
+    if (first === '1') return 'paypal';
+    if (first === '2') return 'mastercard';
+    if (first === '3') return 'visa';
+    if (first === '4') return 'amex';
+    if (first === '5') return 'discover';
+    if (first === '6') return 'diners';
+    if (first === '7') return 'jcb';
+    if (first === '8') return 'unknown';
+    if (first === '9') return 'unknown';
+    return 'unknown';
+  }
+
+  function validateInputs() {
+    const cardNum = cardNumberInput.value.replace(/\D/g, '');
+    const expDate = expDateInput.value;
+    const cvv = cvvInput.value.trim();
+
+    const length = cardNum.length;
+    const first = cardNum[0] || '';
+
+    // Validaciones de tarjeta
+    if (length < 4 || length > 9) {
+      cardTypeDisplay.innerHTML = `<span style="color:#f55; font-weight:700;">Numeración inválida (4 a 9 dígitos)</span>`;
+      return false;
+    }
+    if (first === '8' || first === '9') {
+      cardTypeDisplay.innerHTML = `<span style="color:#f55; font-weight:700;">Número no válido (no puede empezar por 8 o 9)</span>`;
+      return false;
+    }
+
+    // Mostrar tipo de tarjeta si pasa validación
+    const tipo = getCardType(cardNum);
+    cardTypeDisplay.innerHTML = (tipo === 'unknown') ? logos['unknown'] : logos[tipo];
+
+    // Validar que fecha y cvv no estén vacíos
+    if (!expDate) return false;
+    if (!cvv) return false;
+
+    return true;
+  }
+
+  // Activar o desactivar botón pagar según validaciones y campos
+  function togglePayButton() {
+    if (validateInputs()) {
+      payBtn.disabled = false;
+    } else {
+      payBtn.disabled = true;
+    }
+  }
+
+  cardNumberInput.addEventListener('input', () => {
+    cardNumberInput.value = cardNumberInput.value.replace(/\D/g, '');
+    togglePayButton();
+  });
+
+  expDateInput.addEventListener('input', togglePayButton);
+  cvvInput.addEventListener('input', togglePayButton);
+
+  payBtn.addEventListener('click', () => {
+    alert('¡Pago completado! Redirigiendo...');
+    setTimeout(() => {
+      window.location.href = 'josue.html';
+    }, 800);
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    window.location.href = 'josue.html';
+  });
+</script>
+
+</body>
+</html>

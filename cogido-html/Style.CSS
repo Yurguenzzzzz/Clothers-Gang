@@ -1,0 +1,220 @@
+body {
+   font-family: sans-serif;
+   margin: 0;
+   background: linear-gradient(90deg, rgb(183, 223, 255) 25%, rgb(142, 200, 255) 70%);
+}
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+header {
+   display: flex;
+   min-height: 70px;
+   background-color: #3b2d89; /* Color más suave */
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+   color: white;
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+}
+
+.logo img {
+   height: 50px;
+   margin-right: 10px;
+}
+
+nav a {
+   font-weight: 600;
+   padding-right: 10px;
+}
+
+nav a:hover {
+   color: white;
+}
+
+@media (max-width: 700px) {
+   header {
+       flex-direction: column;
+   }
+   nav {
+       padding: 10px 0px;
+   }
+}
+
+.LV-1 {
+   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;  /* Agregué box-shadow para efecto de foco */
+}
+
+.LV-1:hover {
+   transform: scale(1.2); 
+   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);  /* Resalta la imagen con sombra */
+}
+
+section {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   padding: 20px;
+}
+
+.producto {
+   background-color: #f0f7ff; /* Azul pastel suave */
+   padding: 15px;
+   border-radius: 8px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+   margin: 10px;
+   text-align: center;
+   width: 250px;
+   transition: transform 0.3s ease-in-out;
+}
+
+.producto:hover {
+   transform: translateY(-10px); /* Efecto hover para el contenedor */
+}
+
+h1 {
+   color: #333;
+}
+
+button {
+   background-color: #c831a0; /* Azul más fuerte para los botones */
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: background-color 0.3s ease;
+}
+
+button:hover {
+   background-color: #357ab7; /* Efecto hover en botón */
+}
+
+button:focus {
+   outline: none;
+}
+
+section {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex; /* Alineación predeterminada */
+   padding: 20px;
+}
+
+section.derecha {
+   justify-content: flex-end; /* Alineación hacia la derecha */
+   display: flex;
+}
+.producto {
+   background-color: #f0f7ff;
+   padding: 15px;
+   border-radius: 8px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+   margin: 10px;
+   text-align: center;
+   width: 250px;
+   transition: transform 0.3s ease-in-out;
+   margin-left: 30px; /* Esto empuja el div a la derecha */
+   font-display: flex;
+}
+.separacion {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 20px 0;
+   width: 100%; /* Asegura que ocupe toda la anchura del contenedor */
+}
+
+.separacion::before,
+.separacion::after {
+   content: '';
+   flex: 1;
+   border-top: 1px solid #000; /* Línea horizontal */
+}
+
+.separacion span {
+   display: flex;
+   min-height: 70px;
+   background-color: #55ff06; /* Color más suave */
+   justify-content: space-between;
+   align-items: center;
+   padding:0 419px;
+   color: rgb(0, 0, 0); /* Puedes poner el texto en negrita si lo deseas */
+}
+
+/* aqui va la confi del carro */
+.carritoo {
+   
+   background: linear-gradient(
+      90deg,
+  rgb(119, 128, 171)25%,
+  rgb(60, 197, 106)70%
+  );
+   padding: 20px;
+   text-align: center;
+   margin-top: 50px;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carritoo ul {
+   list-style-type: none;
+   padding: 0;
+}
+
+.carritoo button {
+   background-color: #8894d3;
+   color: white;
+   padding: 10px;
+   border: none;
+   cursor: pointer;
+   font-size: 18px;
+   border-radius: 5px;
+}
+
+.carritoo button:hover {
+   background-color: #5be076;
+}
+
+.footer {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.footer-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #f1c40f;
+}
+
+.footer-text {
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.footer-socials a {
+  color: #ffffff;
+  margin: 0 10px;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #f1c40f;
+}

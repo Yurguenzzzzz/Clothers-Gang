@@ -1,0 +1,77 @@
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .nunu {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 1.5s;
+    }
+
+    .nunu:hover {
+      background-color: #27ae60;
+      transform: scale(1.1);
+    }
+
+    .reviews {
+      margin-top: 30px;
+    }
+
+    .review {
+      background: #ecf0f1;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .stars {
+      color: #f1c40f;
+    }
+    .bubu{
+     background-color: rgb(170, 170, 255);
+     color: white;
+     border: 50%;
+     cursor: pointer;
+     margin-top: 20px;
+     transition: 0.3s;
+    }
+    .bubu:hover{
+        background-color: rgb(130, 130, 248);
+        color: red;
+        transform: scale(1.1);
+    }

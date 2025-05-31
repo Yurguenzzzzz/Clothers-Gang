@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clothers Gang - Reseñas</title>
+  <link rel="stylesheet" href="./formulario.css">
+</head>
+<body>
+
+  <h1>Clothers Gang</h1>
+  <div class="container">
+    <h2>Deja tu reseña</h2>
+    <form id="reviewForm">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="reseña">Tu reseña</label>
+      <textarea id="reseña" name="reseña" rows="4" required></textarea>
+
+      <label for="calificacion">Calificación</label>
+      <select id="calificacion" name="calificacion" required>
+        <option value="">Selecciona una calificación</option>
+        <option value="5">⭐️⭐️⭐️⭐️⭐️ (5)</option>
+        <option value="4">⭐️⭐️⭐️⭐️ (4)</option>
+        <option value="3">⭐️⭐️⭐️ (3)</option>
+        <option value="2">⭐️⭐️ (2)</option>
+        <option value="1">⭐️ (1)</option>
+      </select>
+
+      <button type="submit" class="nunu">Enviar Reseña</button>
+      <button class="bubu" onclick="hola()">Volver al inicio</button>
+    </form>
+
+    <div class="reviews">
+      <h2>Reseñas anteriores</h2>
+      <div class="review">
+        <strong>Sofía M.</strong>
+        <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+        <p>¡Excelente ropa! Me encantó la calidad y el diseño. 💖</p>
+      </div>
+      <div class="review">
+        <strong>Daniel R.</strong>
+        <div class="stars">⭐️⭐️⭐️⭐️</div>
+        <p>Buena experiencia de compra. Solo tardó un poco el envío.</p>
+      </div>
+      <div class="review">
+        <strong>Laura G.</strong>
+        <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+        <p>¡Increíble atención al cliente! Volveré a comprar pronto.</p>
+      </div>
+    </div>
+  </div>
+  <script src="./aqui.js"></script>
+</body>
+</html>

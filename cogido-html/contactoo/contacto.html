@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="./stilito.css">
+</head>
+<body>
+    <section id="contacto" class="contact-section">
+        <h2>Contacto</h2>
+        <form id="contact-form">
+            <input type="text" name="mombre" placeholder="Nombre" required>
+            <input type="email" name="correo" placeholder="Correo Electrónico" required>
+            <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+            <button type="submit">Enviar</button>
+            <button id="cancelBtn" class="btn-secondary">Volver al inicio</button>
+        </form>
+    </section>
+
+    <!-- Contenedor para mensajes flash -->
+    <div id="flash-messages" class="flash-messages"></div>
+
+    <script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Detiene el envío del formulario
+
+    const flashContainer = document.getElementById('flash-messages');
+    flashContainer.className = "flash-messages flash-success";
+    flashContainer.textContent = "¡Gracias por contactarnos! Serás redirigido en unos segundos...";
+
+    // Redirige después de 3 segundos
+    setTimeout(() => {
+        window.location.href = "../josue.html"; 
+    }, 3000);
+});
+
+  cancelBtn.addEventListener('click', () => {
+    window.location.href ="../josue.html";
+  });
+</script>
+
+
+
+</body>
+</html>
